@@ -43,8 +43,16 @@
                 "path": "./snippets/ros_urdf_snippets.json"
             },
             {
+                "language": "xml",
+                "path": "./snippets/ros_launch_file.json"
+            },
+            {
                 "language": "python",
                 "path": "./snippets/ros_py_snippets.json"
+            },
+            {
+                "language": "python",
+                "path": "./snippets/ros_py_moveit.json"
             },
             {
                 "language": "cpp",

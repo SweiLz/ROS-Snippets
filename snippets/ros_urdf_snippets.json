@@ -1,5 +1,5 @@
 {
-    "robotXacro": {
+    "xacroRobot": {
         "prefix": "robot_xacro",
         "body": [
             "<?xml version=\"1.0\"?>",
@@ -9,7 +9,24 @@
         ],
         "description": "Insert Robot element with xacro"
     },
-    "robotUrdf": {
+    "xacroPropertyInline": {
+        "prefix": "propertyInline",
+        "body": [
+            "<xacro:property name=\"${1:name}\" value=\"${2:value}\"/>",
+            "$0"
+        ],
+        "description": "Insert xacro property"
+    },
+    "xacroProperty": {
+        "prefix": "property",
+        "body": [
+            "<xacro:property name=\"${1:name}\">",
+            "$0",
+            "</xacro:property>"
+        ],
+        "description": "Insert xacro property"
+    },
+    "robot": {
         "prefix": "robot_urdf",
         "body": [
             "<?xml version=\"1.0\"?>",
@@ -173,6 +190,11 @@
         ],
         "description": "Insert parent/child link"
     },
+    "saftyLimits": {
+        "prefix": "safty_limit",
+        "body": "<safety_controller k_position=\"${1:100}\" k_velocity=\"${2:1.5}\" soft_lower_limit=\"${3:-2.857}\" soft_upper_limit=\"${4:2.857}\"/>\n$0",
+        "description": "Insert joint safty limit"
+    },
     "joint": {
         "prefix": "joint",
         "body": [
@@ -181,6 +203,55 @@
             "</joint>"
         ],
         "description": "Insert basic joint"
+    },
+    "jointFixed": {
+        "prefix": "joint_fixed",
+        "body": [
+            "<joint name=\"${1:joint_name}\" type=\"fixed\">",
+            "\t<parent link=\"${2:parent_link}\"/>",
+            "\t<child link=\"${3:child_link}\"/>",
+            "\t<origin xyz=\"${4:0.0} ${5:0.0} ${6:0.0}\" rpy=\"${7:0.0} ${8:0.0} ${9:0.0}\"/>",
+            "</joint>\n$0"
+        ],
+        "description": "Insert fixed joint"
+    },
+    "jointContinuous": {
+        "prefix": "joint_continuous",
+        "body": [
+            "<joint name=\"${1:joint_name}\" type=\"continuous\">",
+            "\t<parent link=\"${2:parent_link}\"/>",
+            "\t<child link=\"${3:child_link}\"/>",
+            "\t<axis xyz=\"${4:0} ${5:0} ${6:0}\"/>",
+            "\t<origin xyz=\"${7:0} ${8:0} ${9:0}\" rpy=\"${10:0} ${11:0} ${12:0}\"/>",
+            "</joint>\n$0"
+        ],
+        "description": "Insert continuous joint"
+    },
+    "jointRevolute": {
+        "prefix": "joint_revolute",
+        "body": [
+            "<joint name=\"${1:joint_name}\" type=\"revolute\">",
+            "\t<parent link=\"${2:parent_link}\"/>",
+            "\t<child link=\"${3:child_link}\"/>",
+            "\t<axis xyz=\"${4:0} ${5:0} ${6:0}\"/>",
+            "\t<limit lower=\"${7:-3.14159}\" upper=\"${8:3.14159}\" velocity=\"${9:50.0}\" effort=\"${10:1000.0}\"/>",
+            "\t<origin xyz=\"${11:0} ${12:0} ${13:0}\" rpy=\"${14:0} ${15:0} ${16:0}\"/>",
+            "</joint>\n$0"
+        ],
+        "description": "Insert revolute joint"
+    },
+    "jointPrismatic": {
+        "prefix": "joint_prismatic",
+        "body": [
+            "<joint name=\"${1:joint_name}\" type=\"prismatic\">",
+            "\t<parent link=\"${2:parent_link}\"/>",
+            "\t<child link=\"${3:child_link}\"/>",
+            "\t<axis xyz=\"${4:0} ${5:0} ${6:0}\"/>",
+            "\t<limit lower=\"${7:-0.5}\" upper=\"${8:0.5}\" velocity=\"${9:0.5}\" effort=\"${10:1000.0}\"/>",
+            "\t<origin xyz=\"${11:0} ${12:0} ${13:0}\" rpy=\"${14:0} ${15:0} ${16:0}\"/>",
+            "</joint>\n$0"
+        ],
+        "description": "Insert prismatic joint"
     },
     "jointFull": {
         "prefix": "joint",
@@ -226,5 +297,26 @@
             "$0"
         ],
         "description": "Insert physical properties of the joint"
+    },
+    "sensor": {
+        "prefix": "sensor",
+        "body": [
+            "<sensor name=\"${1:sensor_name}\" type=\"${2:|camera,ray,imu,magnetometer,gps,force_torque,contact,sonar,rfidtag,rfid|}\" update_rate=\"${3}\">",
+            "<parent link=\"${4:parent_link}\"/>",
+            "<origin xyz=\"${5:0.0} ${6:0.0} ${7:0.0}\" rpy=\"${8:0.0} ${9:0.0} ${10:0.0}\"/>",
+            "$BLOCK_COMMENT_START Sensor ${2} $BLOCK_COMMENT_END",
+            "</sensor>",
+            "$0"
+        ],
+        "description": "Insert sensor element"
+    },
+    "sensor_camera": {
+        "prefix": "sensor_camera",
+        "body": [
+            "<camera>",
+            "<image width=\"${1:640}\" height=\"${2:480}\" hfov=\"${3:1.5708}\" format=\"${4:RGB8}\" near=\"${5:0.01}\" far=\"${6:50.0}\"/>",
+            "</camera>"
+        ],
+        "description": "sensor_camera"
     }
 }

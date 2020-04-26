@@ -1,0 +1,41 @@
+{
+    "launch": {
+        "prefix": "launch",
+        "body": [
+            "<?xml version=\"1.0\"?>",
+            "<launch>",
+            "\t${0}",
+            "</launch>"
+        ],
+        "description": "ROS launch template"
+    },
+    "arg": {
+        "prefix": "arg",
+        "body": "<arg name=\"${1}\"/>\n$0",
+        "description": "ROS argument"
+    },
+    "argDefault": {
+        "prefix": "arg_default",
+        "body": "<arg name=\"${1}\" default=\"${2}\"/>\n$0",
+        "description": "ROS argument with default"
+    },
+    "argDefaultDoc": {
+        "prefix": "arg_default_doc",
+        "body": "<arg name=\"${1}\" default=\"${2}\" doc=\"${3}\"/>\n$0",
+        "description": "ROS argument with default and document"
+    },
+    "nodeComplex": {
+        "prefix": "node_complex",
+        "body": [
+            "<node name=\"${1:node_name}\" pkg=\"${2:ros_package}\" type=\"${3:executable}\"  output=\"${4|log,screen|}\" respawn=\"${5|false,true|}\" respawn_delay=\"${6:0}\">",
+            "\t${0}",
+            "</node>"
+        ],
+        "description": "ROS node with complex settings"
+    },
+    "param": {
+        "prefix": "param",
+        "body": "<param name=\"${1}\" value=\"${2}\"/>\n${0}",
+        "description": "ROS Param"
+    }
+}
