@@ -10,7 +10,7 @@
         "description": "Insert Robot element with xacro"
     },
     "xacroPropertyInline": {
-        "prefix": "propertyInline",
+        "prefix": "propertyline_xacro",
         "body": [
             "<xacro:property name=\"${1:name}\" value=\"${2:value}\"/>",
             "$0"
@@ -18,13 +18,46 @@
         "description": "Insert xacro property"
     },
     "xacroProperty": {
-        "prefix": "property",
+        "prefix": "property_xacro",
         "body": [
             "<xacro:property name=\"${1:name}\">",
             "$0",
             "</xacro:property>"
         ],
         "description": "Insert xacro property"
+    },
+    "xacroInclude": {
+        "prefix": "include_xacro",
+        "body": [
+            "<xacro:include filename=\"$(find ${1:package_name})/${2}\"/>",
+            "$0"
+        ],
+        "description": "Insert xacro include"
+    },
+    "xacro argument": {
+        "prefix": "arg_xacro",
+        "body": [
+            "<xacro:arg name=\"${1:argument_name}\" default=\"${2:default_value}\"/>",
+            "$0"
+        ],
+        "description": "Insert xacro include"
+    },
+    "xacro macro": {
+        "prefix": "macro_xacro",
+        "body": [
+            "<xacro:macro name=\"${1:name}\" params=\"${2:suffix *origin **content **anothercontent}\">",
+            "\t$0",
+            "</xacro:macro>"
+        ],
+        "description": "Insert xacro macro"
+    },
+    "xacro insert_block": {
+        "prefix": "insert_block_xacro",
+        "body": [
+            "<xacro:insert_block name=\"${1:block_name}\"/>",
+            "$0"
+        ],
+        "description": "Insert xacro block"
     },
     "robot": {
         "prefix": "robot_urdf",
