@@ -1,63 +1,68 @@
 {
-    "name": "ros-snippets",
-    "displayName": "ROS Snippets",
-    "description": "ROS (Robot Operating System) snippets for rospy, roscpp, launch, urdf, xacro etc.",
-    "version": "0.1.0",
-    "publisher": "sweilz",
-    "icon": "media/icon.png",
-    "keywords": [
-        "ros",
-        "robot"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/SweiLz/ROS-Snippets"
-    },
-    "engines": {
-        "vscode": "^1.44.0"
-    },
-    "categories": [
-        "Snippets"
-    ],
-    "contributes": {
-        "languages": [
-            {
-                "id": "xml",
-                "extensions": [
-                    "launch",
-                    "srdf",
-                    "urdf",
-                    "xacro"
-                ]
-            },
-            {
-                "id": "yaml",
-                "extensions": [
-                    "rviz"
-                ]
-            }
-        ],
-        "snippets": [
-            {
-                "language": "xml",
-                "path": "./snippets/ros_urdf_snippets.json"
-            },
-            {
-                "language": "xml",
-                "path": "./snippets/ros_launch_file.json"
-            },
-            {
-                "language": "python",
-                "path": "./snippets/ros_py_snippets.json"
-            },
-            {
-                "language": "python",
-                "path": "./snippets/ros_py_moveit.json"
-            },
-            {
-                "language": "cpp",
-                "path": "./snippets/ros_cpp_snippets.json"
-            }
-        ]
-    }
+	"name": "ros-snippets",
+	"displayName": "ROS Snippets",
+	"description": "ROS (Robot Operating System) snippets for rospy, roscpp, launch, urdf, xacro etc.",
+	"version": "0.1.0",
+	"publisher": "sweilz",
+	"icon": "media/icon.png",
+	"keywords": [
+		"ros",
+		"robot"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/SweiLz/ROS-Snippets"
+	},
+	"engines": {
+		"vscode": "^1.44.0"
+	},
+	"categories": [
+		"Snippets"
+	],
+	"contributes": {
+		"languages": [
+			{
+				"id": "xml",
+				"extensions": [
+					"launch",
+					"srdf",
+					"urdf",
+					"xacro"
+				]
+			},
+			{
+				"id": "yaml",
+				"extensions": [
+					"rviz"
+				]
+			}
+		],
+		"snippets": [
+			{
+				"language": "xml",
+				"path": "./snippets/ros_urdf_snippets.json"
+			},
+			{
+				"language": "xml",
+				"path": "./snippets/ros_launch_file.json"
+			},
+			{
+				"language": "python",
+				"path": "./snippets/ros_py_snippets.json"
+			},
+			{
+				"language": "python",
+				"path": "./snippets/ros_py_moveit.json"
+			},
+			{
+				"language": "cpp",
+				"path": "./snippets/ros_cpp_snippets.json"
+			}
+		]
+	},
+	"__metadata": {
+		"id": "57e1ca0b-e650-4732-ae75-72be97b23976",
+		"publisherDisplayName": "Liews Wuttipat",
+		"publisherId": "82851a77-f3c2-4095-81e3-4e07bb970da6"
+	}
 }
