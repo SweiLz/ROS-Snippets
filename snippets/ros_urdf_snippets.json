@@ -163,7 +163,7 @@
         "prefix": "geometryFull",
         "body": [
             "<geometry>",
-            "\t${1|<box size=\"0.0 0.0 0.0\"/>,<cylinder radius=\"0.0\" length=\"0.0\"/>,<sphere radius=\"0.0\"/>,<mesh filename=\"\" scale=\"1.0\"/>|}",
+            "\t${1|<box size=\"0.0 0.0 0.0\"/>,<cylinder radius=\"0.0\" length=\"0.0\"/>,<sphere radius=\"0.0\"/>,<mesh filename=\"\" scale=\"1.0 1.0 1.0\"/>|}",
             "</geometry>"
         ],
         "description": "Insert full geometric properties"
@@ -185,7 +185,7 @@
     },
     "mesh": {
         "prefix": "mesh",
-        "body": "<mesh filename=\"${1:file_path}\" scale=\"${2:1.0}\"/>",
+        "body": "<mesh filename=\"${1:file_path}\" scale=\"${2:1.0} ${3:1.0} ${4:1.0}\"/>",
         "description": "Insert mesh"
     },
     "rpy": {
@@ -210,6 +210,16 @@
             "$0"
         ],
         "description": "Insert origin with xyz and rpy coordinates"
+    },
+    "material": {
+        "prefix": "material",
+        "body": [
+            "<material name=\"${1:material_name}\">",
+            "\t<color rgba=\"${2:0.0} ${3:0.0} ${4:0.0} ${5:1.0}\"/>",
+            "</material>",
+            "$0"
+        ],
+        "description": "Insert material color specification"
     },
     "parentChild link": {
         "prefix": [
@@ -351,5 +361,95 @@
             "</camera>"
         ],
         "description": "sensor_camera"
+    },
+    "transmission": {
+        "prefix": "transmission",
+        "body": [
+            "<transmission name=\"${1:transmission_name}\">",
+            "\t<type>transmission_interface/${2|SimpleTransmission,DifferentialTransmission,FourBarLinkageTransmission|}</type>",
+            "\t<actuator name=\"${3:actuator_name}\">",
+            "\t\t<hardwareInterface>hardware_interface/${4|EffortJointInterface,VelocityJointInterface,PositionJointInterface,JointStateInterfaces,ActuatorStateInterfaces,EffortActuatorInterface,VelocityActuatorInterface,PositionActuatorInterface,PosVelJointInterface,PosVelAccJointInterface,ForceTorqueSensorInterface,ImuSensorInterface|}</hardwareInterface>",
+            "\t\t<mechanicalReduction>${5:1}</mechanicalReduction>",
+            "\t</actuator>",
+            "\t<joint name=\"${6:joint_name}\">",
+            "\t\t<hardwareInterface>hardware_interface/${7|EffortJointInterface,VelocityJointInterface,PositionJointInterface,JointStateInterfaces,ActuatorStateInterfaces,EffortActuatorInterface,VelocityActuatorInterface,PositionActuatorInterface,PosVelJointInterface,PosVelAccJointInterface,ForceTorqueSensorInterface,ImuSensorInterface|}</hardwareInterface>",
+            "\t</joint>",
+            "</transmission>",
+            "$0"
+        ],
+        "description": "Insert transmission element"
+    },
+    "gazeboRosControl" :{
+        "prefix": "gazeboRosControl",
+        "body": [
+            "<gazebo>",
+            "\t<plugin name=\"gazebo_ros_control\" filename=\"libgazebo_ros_control.so\">",
+            "\t\t<robotNamespace>${1:/}</robotNamespace>",
+            "\t\t<controlPeriod>${2:0.001}</controlPeriod>",
+            "\t\t<robotParam>${3:/robot_description}</robotParam>",
+            "\t\t<legacyModeNS>${4:false}</legacyModeNS>",
+            "\t</plugin>",
+            "</gazebo>",
+            "$0"
+        ],
+        "description": "Insert gazebo_ros_control plugin"
+    },
+    "gazeboDiffDrive" :{
+        "prefix": "gazeboDiffDrive",
+        "body": [
+            "<gazebo>",
+            "\t<plugin name=\"differential_drive_controller\" filename=\"libgazebo_ros_diff_drive.so\">",
+            "\t\t<legacyMode>${1:false}</legacyMode>",
+            "\t\t<alwaysOn>${2:true}</alwaysOn>",
+            "\t\t<updateRate>${3:1000.0}</updateRate>",
+            "\t\t<leftJoint>$4</leftJoint>",
+            "\t\t<rightJoint>$5</rightJoint>",
+            "\t\t<wheelSeparation>$6</wheelSeparation>",
+            "\t\t<wheelDiameter>$7</wheelDiameter>",
+            "\t\t<wheelTorque>$8</wheelTorque>",
+            "\t\t<publishTf>${9:1}</publishTf>",
+            "\t\t<odometryFrame>${10:map}</odometryFrame>",
+            "\t\t<commandTopic>${11:cmd_vel}</commandTopic>",
+            "\t\t<odometryTopic>${12:odom}</odometryTopic>",
+            "\t\t<robotBaseFrame>${13:base_link}</robotBaseFrame>",
+            "\t\t<wheelAcceleration>$14</wheelAcceleration>",
+            "\t\t<publishWheelJointState>${15:true}</publishWheelJointState>",
+            "\t\t<publishWheelTF>${16:false}</publishWheelTF>",
+            "\t\t<odometrySource>${17:1}</odometrySource>",
+            "\t\t<rosDebugLevel>${18:Debug}</rosDebugLevel>",
+            "\t</plugin>",
+            "</gazebo>",
+            "$0"
+        ],
+        "description": "Insert Gazebo differential_drive_controller plugin"
+    },
+    "gazeboLinksElements" : {
+        "prefix": "gazeboLinksElements",
+        "body": [
+            "<gazebo reference=\"${1:link_name}\">",
+            "\t<mu1>${2:1.0}</mu1>",
+            "\t<mu2>${3:1.0}</mu2>",
+            "\t<kp>${4:10000000.0}</kp>",
+            "\t<kd>${5:1.0}</kd>",
+            "\t<fdir1>${6:1 0 0}</fdir1>",
+            "</gazebo>",
+            "$0"
+        ],
+        "description": "Insert Gazebo elements for links"
+    },
+    "gazeboJointStatePublisher" :{
+        "prefix": "gazeboJointStatePublisher",
+        "body": [
+            "<gazebo>",
+            "\t<plugin name=\"joint_state_publisher\" filename=\"libgazebo_ros_joint_state_publisher.so\">",
+            "\t\t<robotNamespace>${1:/}</robotNamespace>",
+            "\t\t<updateRate>${2:10}</updateRate>",
+            "\t\t<jointName>$3</jointName>",
+            "\t\t<alwaysOn>${4:true}</alwaysOn>",
+            "\t</plugin>",
+            "</gazebo>",
+            "$0"
+        ],
+        "description": "Insert gazebo_ros_joint_state_publisher plugin"
     }
 }
