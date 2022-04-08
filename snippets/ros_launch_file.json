@@ -89,5 +89,56 @@
             "${0}"
         ],
         "description": "ROS Remap"
+    },
+    "gazebo_launch":{
+        "prefix":"include_gazebo",
+        "body":[
+            "<include file=\"$(find gazebo_ros)/launch/empty_world.launch\">",
+		        "\t<arg name=\"world_name\" value=\"${1:$(find ${2:ros_package_name})}/worlds/${3:world_file_name}.world\"/>",
+		        "\t<arg name=\"paused\" default=\"${4|false,true|}\"/>",
+		        "\t<arg name=\"use_sim_time\" default=\"${5|true,false|}\"/>",
+		        "\t<arg name=\"gui\" default=\"${6|true,false|}\"/>",
+		        "\t<arg name=\"headless\" default=\"${7|false,true|}\"/>",
+		        "\t<arg name=\"debug\" default=\"${8|false,true|}\"/>",
+	        "</include>",
+            "${0}"
+        ],
+        "description": "Launch gazebo world"
+    },
+    "robot_description_param_xacro":{
+        "prefix":"param_robot_xacro",
+        "body":[
+            "<arg name=\"${1:robot_model_file}\" default=\"$(find xacro)/xacro --inorder '${2:$(find ${3:ros_package_name})}/urdf/${4:robot_description_file}.xacro'\"/>",
+	        "<param name=\"${5:robot_description}\" command=\"${6:$(arg ${1})}\" />",
+            "${0}"
+        ],
+        "description": "read robot description in .xarco file"
+    },
+    "robot_description_param_urdf":{
+        "prefix":"param_robot_urdf",
+        "body":[
+            "<param name=\"${1:robot_description}\" textfile=\"${2:$(find ${3:ros_package_name})}/urdf/${4:robot_description_file}.urdf\"/>",
+            "${0}"
+        ],
+        "description": "read robot description in .urdf file"
+    },
+    "node_state_publisher":{
+        "prefix":"node_state",
+        "body":[
+            "<node pkg=\"joint_state_publisher\" type=\"joint_state_publisher\" name=\"${1:joint_state_publisher}\"  />",
+            "<node pkg=\"robot_state_publisher\" type=\"robot_state_publisher\" name=\"${2:robot_state_publisher}\">",
+		        "\t<param name=\"publish_frequency\" type=\"double\" value=\"${3:50.0}\"/>",
+	        "</node>",
+            "${0}"
+        ],
+        "description": "node for joint and robot state publish"
+    },
+    "robot_gazebo_spawn_model":{
+        "prefix":"node_spawn",
+        "body":[
+            "<node pkg=\"gazebo_ros\" type=\"spawn_model\" name=\"${1:spawn_model}\" output=\"screen\" args=\"-urdf -model ${2:robot_name} -param ${3:robot_description}\"/>",
+            "${0}"
+        ],
+        "description": "node for spawn robot model in gazebo world"
     }
 }
