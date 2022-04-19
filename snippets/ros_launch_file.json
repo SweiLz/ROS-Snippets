@@ -178,5 +178,53 @@
             "${0}"
         ],
         "description": "node for gmapping" 
+    },
+    "node_rviz":{
+        "prefix":"node_rviz",
+        "body":[
+            "<node pkg=\"rviz\" type=\"rviz\" name=\"rviz\" args=\"-d ${1:$(find ${2:ros_package_name})}/rviz/${3:config_file_name}.rviz\"  />",
+            "${0}"
+            
+            
+        ],
+        "description": "node for rviz"
+    },
+    "node_hector":{
+        "prefix":"node_hector",
+        "body":[
+            "<node pkg=\"hector_mapping\" type=\"hector_mapping\" name=\"hector_mapping\" output=\"${1|srceen,log|}\"/>",
+                "\t<param name=\"pub_map_odom_transform\" value=\"${2|true,false|}\"/>",
+                "\t<param name=\"map_frame\" value=\"${3:map}\"/>",
+                "\t<param name=\"base_frame\" value=\"${4:base_footprint}\"/>",
+                "\t<param name=\"odom_frame\" value=\"${5:odom}\"/>",
+                "\t<!--Tf use-->",
+                "\t<param name=\"use_tf_scan_transformation\" value=\"${6|true,false|}\"/>",
+                "\t<param name=\"use_tf_pose_start_estimate\" value=\"${7|false,true|}\"/>",
+                "\t<!--Map size / start point-->",
+                "\t<param name=\"map_resolution\" value=\"${8:0.05}\"/>",
+                "\t<param name=\"map_size\" value=\"${9:2048}\"/>",
+                "\t<param name=\"map_start_x\" value=\"${10:0.5}\"/>",
+                "\t<param name=\"map_start_y\" value=\"${11:0.5}\"/>",
+                "\t<param name=\"laser_z_min_value\" value=\"${12:-1.0}\"/>",
+                "\t<param name=\"laser_z_max_value\" value=\"${13:1.0}\"/>",
+                "\t<param name=\"map_multi_res_levels\" value=\"${14:2}\"/>",
+                "\t<param name=\"map_pub_period\" value=\"${15:2}\"/>",
+                "\t<param name=\"laser_min_dist\" value=\"${16:0.4}\"/>",
+                "\t<param name=\"laser_max_dist\" value=\"${17:5.5}\"/>",
+                "\t<param name=\"output_timing\" value=\"${18|false,true|}\"/>",
+                "\t<param name=\"pub_map_scanmatch_transform\" value=\"${19|true,false|}\"/>",
+                "\t<!--Map update parameters-->",
+                "\t<param name=\"update_factor_free\" value=\"${20:0.4}\"/>",
+                "\t<param name=\"update_factor_occupied\" value=\"${21:0.7}\"/>",
+                "\t<param name=\"map_update_distance_thresh\" value=\"${22:0.2}\"/>",
+                "\t<param name=\"map_update_angle_thresh\" value=\"${23:0.06}\"/>",
+                "\t<!--Advertising config-->",
+                "\t<param name=\"advertice_map_service\" value=\"${24|true,false|}\"/>",
+                "\t<param name=\"scan_subscriber_queue_size\" value=\"${25:5}\"/>",
+                "\t<param name=\"scan_topic\" value=\"${26:scan}\"/>",
+            "</node>",
+            "${0}"          
+        ],
+        "description": "node for hector"
     }
 }
