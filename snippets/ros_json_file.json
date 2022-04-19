@@ -1,0 +1,43 @@
+{
+    "ros_param_json_launch": {
+        "prefix": "param",
+        "body": [
+            "\"${1:\\t}<param name=\\\"${2:param_name}\\\" value=\\\"${3:${${4:id}:${5:param_value}}}\\\"/>\"${6:,}\n${0}"
+        ],
+        "description": "rule for generating json file body define of the ros param"
+    },
+    "ros_param_with_choice_json_launch": {
+        "prefix": "param_choice",
+        "body": [
+            "\"${1:\\t}<param name=\\\"${2:param_name}\\\" value=\\\"${3:${${4:id}|${5:param_value_choise_1},${6:param_value_choise_2}}|}\\\"/>\"${7:,}\n${0}"
+        ],
+        "description": "rule for generating json file body define of the ros param"
+    },
+    "ros_node_json_compact_launch": {
+        "prefix": "node",
+        "body": [
+            "\"${1:}<node pkg=\\\"${2:ros_package}\\\" type=\\\"${3:executable}\\\" name=\\\"${4:node_name}\\\" output=\\\"${5:${${6:id}|${7:srceen},${8:log}}|}\\\"/>\",",
+            "\t${0}",
+            "\"</node>\",",
+            "\"${${9:0}}\""
+
+        ],
+        "description": "rule for generating json file body define of the ros node"
+    },
+    "ros_arg_json_launch": {
+        "prefix": "arg",
+        "body": [
+            "\"${1:\\t}<arg name=\\\"${2:arg_name}\\\" default=\\\"${3:${${4:id}:${5:arg_value}}}\\\"/>\"${6:,}\n${0}"
+        ],
+        "description": "rule for generating json file body define of the ros arg"
+    },
+    "ros_note_json_launch": {
+        "prefix": "<!",
+        "body": [
+            "\"${1:\\t}<!--${2:note info}-->\"${3:,}\n${0}"
+        ],
+        "description": "rule for generating json file body define of the ros note"
+    }
+
+}
+

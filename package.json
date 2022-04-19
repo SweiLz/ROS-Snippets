@@ -57,12 +57,19 @@
 			{
 				"language": "cpp",
 				"path": "./snippets/ros_cpp_snippets.json"
+			},
+			{
+				"language": "json",
+				"path": "./snippets/ros_json_file.json"
 			}
 		]
 	},
 	"__metadata": {
 		"id": "57e1ca0b-e650-4732-ae75-72be97b23976",
+		"publisherId": "82851a77-f3c2-4095-81e3-4e07bb970da6",
 		"publisherDisplayName": "Liews Wuttipat",
-		"publisherId": "82851a77-f3c2-4095-81e3-4e07bb970da6"
+		"isPreReleaseVersion": false,
+		"preRelease": false,
+		"installedTimestamp": 1648976985980
 	}
 }
