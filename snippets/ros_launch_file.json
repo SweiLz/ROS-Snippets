@@ -41,10 +41,18 @@
     "nodeSimple": {
         "prefix": "nodeSimple",
         "body": [
-            "<node name=\"${1:node_name}\" pkg=\"${2:$1}\" type=\"${3:$1}\"${4: output=\"screen\"}/>",
+            "<node name=\"${1:node_name}\" pkg=\"${2:$1}\" type=\"${3:$1}\" output=\"${4|log,screen|}\"/>",
             "${0}"
         ],
         "description": "ROS node simple"
+    },
+    "node_arg": {
+        "prefix": "node_arg",
+        "body": [
+            "<node  pkg=\"${1:ros_package}\" type=\"${2:executable}\" name=\"${3:$2}\" output=\"${4|screen,log|}\" args=\"${5:$(find ${6:ros_package_name})}/${7:dir_name}/${8:file_name}\"/>",
+            "${0}"
+        ],
+        "description": "ROS node with arg"
     },
     "param": {
         "prefix": "param",
@@ -184,8 +192,6 @@
         "body":[
             "<node pkg=\"rviz\" type=\"rviz\" name=\"rviz\" args=\"-d ${1:$(find ${2:ros_package_name})}/rviz/${3:config_file_name}.rviz\"  />",
             "${0}"
-            
-            
         ],
         "description": "node for rviz"
     },
@@ -226,5 +232,19 @@
             "${0}"          
         ],
         "description": "node for hector"
+    },
+    "node_move_base":{
+        "prefix":"node_move_base",
+        "body":[
+            "<node pkg=\"move_base\" type=\"move_base\" name=\"move_base\" output=\"${1|srceen,log|}\" clear_params=\"${2|true,false|}\"/>",
+                "\t<rosparam file=\"$(find ${3:ros_package_name})/${4:config}/${5:costmap_common_params.yaml}\" command=\"load\" ns=\"${6:global_costmap}\"/>",
+                "\t<rosparam file=\"$(find ${3:ros_package_name})/${4:file_dir}/${5:file_name}\" command=\"load\" ns=\"${7:local_costmap}\"/>",
+                "\t<rosparam file=\"$(find ${3:ros_package_name})/${4:file_dir}/${8:global_costmap_params.yaml}\" command=\"load\" />",
+                "\t<rosparam file=\"$(find ${3:ros_package_name})/${4:file_dir}/${9:local_costmap_params.yaml}\" command=\"load\" />",
+                "\t<rosparam file=\"$(find ${3:ros_package_name})/${4:file_dir}/${10:base_local_planner_params.yaml}\" command=\"load\" />",
+            "</node>",
+            "${0}"
+        ],
+        "description": "node for rviz"
     }
 }
