@@ -13,6 +13,20 @@
         ],
         "description": "rule for generating json file body define of the ros param"
     },
+    "ros_param_with_file_json_launch": {
+        "prefix": "rosparam",
+        "body": [
+            "\"${1:\\t}<rosparam file=\\\"$(find ${2:${${3:id}:${4:ros_package_name}}})/${5:${${6:id}:${7:file_dir}}}/${8:${${9:id}:${10:file_name}}}\\\" command=\\\"load\\\" />\"${11:,}\n${0}"
+        ],
+        "description": "rule for generating json file body define of the ros param with file"
+    },
+    "ros_param_with_file_and_ns_json_launch": {
+        "prefix": "rosparam",
+        "body": [
+            "\"${1:\\t}<rosparam file=\\\"$(find ${2:${${3:id}:${4:ros_package_name}}})/${5:${${6:id}:${7:file_dir}}}/${8:${${9:id}:${10:file_name}}}\\\" command=\\\"load\\\" ns=\\\"${11:${${12:id}:${13:param_name_space}}}\\\"/>\"${14:,}\n${0}"
+        ],
+        "description": "rule for generating json file body define of the ros param with file"
+    },
     "ros_node_json_compact_launch": {
         "prefix": "node",
         "body": [
@@ -38,6 +52,5 @@
         ],
         "description": "rule for generating json file body define of the ros note"
     }
-
 }
 
