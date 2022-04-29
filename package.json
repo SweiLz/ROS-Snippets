@@ -27,7 +27,8 @@
 					"launch",
 					"srdf",
 					"urdf",
-					"xacro"
+					"xacro",
+					"xml"
 				]
 			},
 			{
@@ -45,6 +46,10 @@
 			{
 				"language": "xml",
 				"path": "./snippets/ros_launch_file.json"
+			},
+			{
+				"language": "xml",
+				"path": "./snippets/ros_xml_config_snippets.json"
 			},
 			{
 				"language": "python",

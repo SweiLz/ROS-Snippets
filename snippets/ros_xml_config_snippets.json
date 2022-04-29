@@ -1,0 +1,22 @@
+{
+    "class_ros": {
+        "prefix": "class_ros",
+        "body": [
+            "<class name=\"${1:class_name_id}\" type=\"${2:class_type}\" base_class_type=\"${3:base_class_type}\">",
+                "\t<description> ${4:class description} </description>",
+            "</class>",
+            "${0}"
+        ],
+        "description": "ROS class define in xml file"
+    },
+    "library_ros": {
+        "prefix": "library",
+        "body": [
+            "<library path = \"lib/${1:lib_file_name}\">",
+            "\t${0}",
+            "</library>"
+        ],
+        "description": "ROS library define in xml file"
+    }
+    
+}
